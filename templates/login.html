@@ -15,11 +15,12 @@
     }
 
     body {
+      background-image: url(/static/gym.jpg);
+      background-size: 100%;
       display: flex;
       align-items: center;
       padding-top: 40px;
       padding-bottom: 40px;
-      background-color: #f5f5f5;
     }
 
     .form-signin {
@@ -93,6 +94,16 @@
       white-space: nowrap;
       -webkit-overflow-scrolling: touch;
     }
+    .form-control{
+      background-color: rgba(255,255,255,0.65);
+      margin: 12px 3px;
+    }
+    form h1{
+      color: white;
+    }
+    .remember{
+      color: white;
+    }
   </style>
 
 
@@ -106,8 +117,8 @@
     <form method="post" action="/login">
       {% csrf_token %}
       <!-- action login page and method post -->
-      <img class="mb-4" src="/static/favicon1.png" alt="" width="72" height="57">
-      <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+      <!-- <img class="mb-4" src="/static/favicon1.png" alt="" width="72" height="57"> -->
+      <h1 class="h3 mb-3 fw-normal">Please Sign-in</h1>
 
       <div class="form-floating">
         <input type="text" class="form-control" id="floatingInput" name="username" placeholder="Username">
@@ -119,7 +130,7 @@
       </div>
 
       <div class="checkbox mb-3">
-        <label>
+        <label class="remember">
           <input type="checkbox" value="remember-me"> Remember me
         </label>
       </div>
