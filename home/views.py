@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
+from datetime import datetime
+from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
 
 # password : kanha$2012
@@ -27,3 +29,14 @@ def loginUser(request):
 def logoutUser(request):
     logout(request)
     return redirect('/login')
+
+def signup(request):
+    if request.method == "POST":
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        phone = request.POST.get('phone')
+        age = request.POST.get('age')
+        signup = Customer(name=name, email=email, phone=phone, age=age, date=datetime.today())
+        signup.save()
+        messages.success(request, 'Customer Registered successfully')
+    return render(request,'signup.html')
