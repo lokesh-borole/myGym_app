@@ -42,3 +42,25 @@ def signup(request):
         signup.save()
         messages.success(request, 'Customer Registered successfully')
     return render(request,'signup.html')
+
+
+# for customer
+def loginCustomer(request):
+    if request.method=="POST":
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        # username = User.objects.get(email=email).username
+        # check if user has enetered correct Credentials
+        customer = authenticate(email=email, password=password)
+        if customer is not None:
+            login(request,customer)
+            # A backend authenticated the credentials
+            return redirect('customer.html')
+        else:
+            # No backend authenticated the credentials    
+            return render(request,'customerLogin.html')
+    return render(request,'customerLogin.html')
+
+def logoutCustomer(request):
+    logout(request)
+    return redirect('/customerLogin')
